@@ -1,9 +1,9 @@
 package com.josenaves.firstkotlinapp
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_main.textView
@@ -30,5 +30,22 @@ class MainActivity : AppCompatActivity() {
 
         // display the new value in the text view
         textView.text = count.toString()
+    }
+
+    fun randomMe(view: View) {
+        // create an Intent to start the second activity
+        val randomIntent = Intent(this, SecondActivity::class.java)
+
+        // get the current value of the text view
+        val countString = textView.text.toString()
+
+        // convert the count to an int
+        val count = Integer.parseInt(countString)
+
+        // Add the count to the extras for the intent
+        randomIntent.putExtra(SecondActivity.TOTAL_COUNT, count)
+
+        // start the new activity
+        startActivity(randomIntent)
     }
 }
